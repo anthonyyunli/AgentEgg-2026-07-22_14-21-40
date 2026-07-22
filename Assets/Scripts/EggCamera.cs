@@ -52,10 +52,12 @@ public class EggCamera : MonoBehaviour
         }
         lookInput = Vector2.zero;
 
+        // camera slightly above egg
         Vector3 focusPoint = transform.position + Vector3.up * targetHeight;
 
         Quaternion cameraRotation = Quaternion.Euler(pitch, yaw, 0f);
-
+        
+        // camera slightly behind where its looking at
         Vector3 cameraPosition = focusPoint - cameraRotation * Vector3.forward * distance;
 
         cameraTransform.SetPositionAndRotation(cameraPosition, cameraRotation);
