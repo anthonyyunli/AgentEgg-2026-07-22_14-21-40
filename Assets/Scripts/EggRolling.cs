@@ -23,7 +23,6 @@ public class EggRolling : MonoBehaviour
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
-        Debug.Log(moveInput.magnitude);
         moveInput = Vector2.ClampMagnitude(moveInput, 1f);
     }
 
@@ -35,7 +34,7 @@ public class EggRolling : MonoBehaviour
         Vector3 cameraForward = cameraTransform.forward;
         Vector3 cameraRight = cameraTransform.right;
 
-        Vector3 moveDir = cameraForward * moveInput.y + cameraRight * moveInput.x;
+        Vector3 moveDir = cameraForward * -moveInput.y + cameraRight * -moveInput.x;
         moveDir.Normalize();
 
         Vector3 torqueAxis = Vector3.Cross(moveDir, Vector3.up); // roll on axis perpendicular to movement
