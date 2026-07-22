@@ -17,7 +17,7 @@ public class EggHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerVelocity = player.Transform.velocity.y.magnitude;
-        Debug.Log(playerVelocity);
+      //  playerVelocity = player.Transform.velocity.y.magnitude;
+      //  Debug.Log(playerVelocity);
     }
 }
