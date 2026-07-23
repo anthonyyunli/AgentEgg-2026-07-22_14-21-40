@@ -10,12 +10,12 @@ public class EggHealth : MonoBehaviour
     public float health = 100;
     public float softness = 1;
 
-    public bool isGrounded;
+    public bool isGrounded1;
 
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundCastRadius = 0.45f;
     [SerializeField] private float groundCastDistance = 0.20f;
-    [SerializeField] private float groundCastStartOffset = 0.05f;
+    [SerializeField] private float groundCastStartOffset = 0.5f;
 
     //  public LayerMask groundlayer;
 
@@ -25,34 +25,27 @@ public class EggHealth : MonoBehaviour
         
     }
 
-    private bool CheckGrounded()
-    {
-        Vector3 castOrigin = transform.position + Vector3.up * groundCastStartOffset;
-        Debug.Log("EE");
-        return Physics.SphereCast(
-            castOrigin,
-            groundCastRadius,
-            Vector3.down,
-            out _,
-            groundCastDistance,
-            groundMask,
-            QueryTriggerInteraction.Ignore
-        );
-    }
+    
 
     // Update is called once per frame
     void Update()
     {
+        isGrounded1 = isGrounded();//only for testing pourposes. delte afterwards
 
-        isGrounded = CheckGrounded();
-        // playerVelocity = player.Transform.velocity.y.magnitude;
+        Debug.Log(isGrounded());
 
-        if (player.linearVelocity.y * softness * -1 >= 3 && isGrounded)
+        if (player.linearVelocity.y * softness * -1*Time.deltaTime*60 >= 3 && isGrounded())
         { 
-            health -= Mathf.Abs(player.linearVelocity.y) - 3; 
+            health -= Mathf.Abs(player.linearVelocity.y)*Time.deltaTime *60- 3; 
         }
 
 
-        Debug.Log("velocity:" + player.linearVelocity.y + ", health:" + health);
+       // Debug.Log("velocity:" + player.linearVelocity.y + ", health:" + health);
+    }
+
+    private bool isGrounded()
+    {
+        return Physics.Raycast(player.position, Vector3.down, 0.7f, groundMask);
+        
     }
 }
