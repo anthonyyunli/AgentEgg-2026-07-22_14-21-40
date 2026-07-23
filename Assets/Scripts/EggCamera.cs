@@ -28,7 +28,7 @@ public class EggCamera : MonoBehaviour
 
     public void OnLook(InputValue value)
     {
-        Debug.Log(value.Get<Vector2>());
+      //  Debug.Log(value.Get<Vector2>());//so I can see my debug.log
         lookInput = value.Get<Vector2>();
     }
 
