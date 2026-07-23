@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Timer : MonoBehaviour
     public float time;
     public float maxTime;
 
+    public TextMeshProUGUI timetext;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,7 +27,9 @@ public class Timer : MonoBehaviour
     void Update()
     {
         time -= Time.deltaTime;
-        setMaxTime(time);
+        setTime(time);
+        timetext.text = ("Time: " + (int)time + "s");
+       
     }
 
     public void setMaxTime(float time)
