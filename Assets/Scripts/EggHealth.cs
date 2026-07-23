@@ -12,13 +12,13 @@ public class EggHealth : MonoBehaviour
     public Gradient healthgradient;
 
     //public double playerVelocity;
-    public Rigidbody player;
+    private Rigidbody player;
     public float health = 100;
-    public float softness = 1;
+    private float softness = 1;
 
-    public bool isGrounded1 = true;
+    private bool isGrounded1 = true;
 
-    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private GroundSensor groundSensor;
 
     //  public LayerMask groundlayer;
 
@@ -42,10 +42,10 @@ public class EggHealth : MonoBehaviour
     {
         
 
-        Debug.Log(isGrounded());
+        bool groundedNow = groundSensor.IsGrounded();
 
         //if (player.linearVelocity.y * -1*Time.deltaTime*60 >= 1 && isGrounded())
-        if (isGrounded() && !isGrounded1)
+        if (groundedNow && !isGrounded1)
         {
             if (Mathf.Abs(player.linearVelocity.y) * softness > 10)
             {
@@ -59,15 +59,9 @@ public class EggHealth : MonoBehaviour
 
 
         // Debug.Log("velocity:" + player.linearVelocity.y + ", health:" + health);
-        isGrounded1 = isGrounded();//only for testing pourposes. delte afterwards
+        isGrounded1 = groundedNow;//only for testing pourposes. delte afterwards
 
         setHealth(health);
-    }
-
-    private bool isGrounded()
-    {
-        return Physics.Raycast(player.position, Vector3.down, 1f, groundMask);
-        
     }
 
     public void setMaxHealth(float health)

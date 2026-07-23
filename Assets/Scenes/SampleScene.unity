@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 192325824}
   - component: {fileID: 192325823}
   - component: {fileID: 192325822}
+  - component: {fileID: 192325825}
   m_Layer: 0
   m_Name: EggPlayer
   m_TagString: Untagged
@@ -248,16 +249,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggRolling
   cameraTransform: {fileID: 330585546}
+  groundSensor: {fileID: 192325825}
   torqueStrength: 20
   maxAngularSpeed: 25
   jumpImpulse: 6
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  groundCastRadius: 0.45
-  groundCastDistance: 0.2
-  groundCastStartOffset: 0.05
-  isGrounded: 0
 --- !u!114 &192325823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,16 +265,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5126a7a48afbc4db11b7cc26cecba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggHealth
-  player: {fileID: 192325820}
-  health: 100
-  softness: 1
-  isGrounded1: 0
-  groundMask:
+  healthslider: {fileID: 0}
+  healthfill: {fileID: 0}
+  healthgradient:
     serializedVersion: 2
-    m_Bits: 0
-  groundCastRadius: 0.45
-  groundCastDistance: 0.2
-  groundCastStartOffset: 0.5
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  health: 100
+  groundSensor: {fileID: 192325825}
 --- !u!114 &192325824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +317,23 @@ MonoBehaviour:
   mouseSensitivity: 0.12
   minPitch: -20
   maxPitch: 65
+--- !u!114 &192325825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192325817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf2b512ecea6b8f289c11aa2b793700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundSensor
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  checkOffset: 0.5
+  checkRadius: 0.2
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
