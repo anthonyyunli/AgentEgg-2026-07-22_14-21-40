@@ -21,7 +21,7 @@ public class EggHealth : MonoBehaviour
     [SerializeField] private float checkOffset = 0.5f;
     [SerializeField] private float checkRadius = 0.4f;
 
-    //    [SerializeField] private GroundSensor groundSensor;
+    public GroundSensor groundSensor;
 
       public LayerMask groundMask;
 
@@ -41,12 +41,12 @@ public class EggHealth : MonoBehaviour
     
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
 
-       // bool groundedNow = groundSensor.IsGrounded();
-        bool groundedNow = isGrounded();
+        bool groundedNow = groundSensor.IsGrounded();
+    //    bool groundedNow = isGrounded();
 
         //if (player.linearVelocity.y * -1*Time.deltaTime*60 >= 1 && isGrounded())
         if (groundedNow && !isGrounded1)

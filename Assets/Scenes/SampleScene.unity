@@ -344,14 +344,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5126a7a48afbc4db11b7cc26cecba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggHealth
-
   healthslider: {fileID: 736613527}
   healthfill: {fileID: 1530018302}
   healthgradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0.94274926, b: 0, a: 1}
-    key2: {r: 0, g: 1, b: 0.17504728, a: 0}
+    key1: {r: 0.99178314, g: 1, b: 0, a: 1}
+    key2: {r: 0, g: 1, b: 0.17926908, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -373,18 +372,18 @@ MonoBehaviour:
     atime5: 0
     atime6: 0
     atime7: 0
-    m_Mode: 2
+    m_Mode: 0
     m_ColorSpace: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   player: {fileID: 192325820}
   health: 100
-  softness: 1
-  isGrounded1: 0
+  checkOffset: 0.5
+  checkRadius: 0.2
+  groundSensor: {fileID: 192325825}
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-
 --- !u!114 &192325824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1823,7 +1822,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.2, y: 45}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074708482
 MonoBehaviour:
