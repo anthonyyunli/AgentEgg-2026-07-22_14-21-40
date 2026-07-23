@@ -8,13 +8,19 @@ public class EggHealth : MonoBehaviour
     //public double playerVelocity;
     public Rigidbody player;
     public float health = 100;
-    public float softness = 4;
+    public float softness = 1;
 
     public bool isGrounded1 = true;
 
     [SerializeField] private LayerMask groundMask;
 
     //  public LayerMask groundlayer;
+
+    void Awake()
+    {
+
+        softness = 1;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,8 +39,15 @@ public class EggHealth : MonoBehaviour
 
         //if (player.linearVelocity.y * -1*Time.deltaTime*60 >= 1 && isGrounded())
         if (isGrounded() && !isGrounded1)
-        { 
-            health -= Mathf.Abs(player.linearVelocity.y)*softness; 
+        {
+            if (Mathf.Abs(player.linearVelocity.y) * softness > 10)
+            {
+                health -= Mathf.Abs(player.linearVelocity.y) * softness * 6;
+            }
+            else
+            {
+                health -= Mathf.Abs(player.linearVelocity.y) * softness;
+            }
         }
 
 

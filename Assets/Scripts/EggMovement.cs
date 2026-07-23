@@ -12,7 +12,7 @@ public class EggRolling : MonoBehaviour
     [SerializeField] private float maxAngularSpeed = 25f;
 
     [Header("Jump")]
-    [SerializeField] private float jumpImpulse = 2.5f;
+    [SerializeField] private float jumpImpulse = 6f;
 
     [Header("GroundCheck")]
     [SerializeField] private LayerMask groundMask;
@@ -29,6 +29,8 @@ public class EggRolling : MonoBehaviour
 
     private void Awake()
     {
+        jumpImpulse = 6f;
+
         body = GetComponent<Rigidbody>();
         body.maxAngularVelocity = maxAngularSpeed;
     }
