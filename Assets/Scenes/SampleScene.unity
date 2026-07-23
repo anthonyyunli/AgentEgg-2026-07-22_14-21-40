@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 192325824}
   - component: {fileID: 192325823}
   - component: {fileID: 192325822}
+  - component: {fileID: 192325825}
   m_Layer: 0
   m_Name: EggPlayer
   m_TagString: Untagged
@@ -327,16 +328,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggRolling
   cameraTransform: {fileID: 330585546}
+  groundSensor: {fileID: 192325825}
   torqueStrength: 20
   maxAngularSpeed: 25
   jumpImpulse: 6
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  groundCastRadius: 0.45
-  groundCastDistance: 0.2
-  groundCastStartOffset: 0.05
-  isGrounded: 0
 --- !u!114 &192325823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5126a7a48afbc4db11b7cc26cecba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggHealth
+
   healthslider: {fileID: 736613527}
   healthfill: {fileID: 1530018302}
   healthgradient:
@@ -388,6 +384,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+
 --- !u!114 &192325824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +403,23 @@ MonoBehaviour:
   mouseSensitivity: 0.12
   minPitch: -20
   maxPitch: 65
+--- !u!114 &192325825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192325817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf2b512ecea6b8f289c11aa2b793700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundSensor
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  checkOffset: 0.5
+  checkRadius: 0.2
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
