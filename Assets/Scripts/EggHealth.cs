@@ -8,14 +8,11 @@ public class EggHealth : MonoBehaviour
     //public double playerVelocity;
     public Rigidbody player;
     public float health = 100;
-    public float softness = 1;
+    public float softness = 4;
 
-    public bool isGrounded1;
+    public bool isGrounded1 = true;
 
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private float groundCastRadius = 0.45f;
-    [SerializeField] private float groundCastDistance = 0.20f;
-    [SerializeField] private float groundCastStartOffset = 0.5f;
 
     //  public LayerMask groundlayer;
 
@@ -30,22 +27,24 @@ public class EggHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded1 = isGrounded();//only for testing pourposes. delte afterwards
+        
 
         Debug.Log(isGrounded());
 
-        if (player.linearVelocity.y * softness * -1*Time.deltaTime*60 >= 3 && isGrounded())
+        //if (player.linearVelocity.y * -1*Time.deltaTime*60 >= 1 && isGrounded())
+        if (isGrounded() && !isGrounded1)
         { 
-            health -= Mathf.Abs(player.linearVelocity.y)*Time.deltaTime *60- 3; 
+            health -= Mathf.Abs(player.linearVelocity.y)*softness; 
         }
 
 
-       // Debug.Log("velocity:" + player.linearVelocity.y + ", health:" + health);
+        // Debug.Log("velocity:" + player.linearVelocity.y + ", health:" + health);
+        isGrounded1 = isGrounded();//only for testing pourposes. delte afterwards
     }
 
     private bool isGrounded()
     {
-        return Physics.Raycast(player.position, Vector3.down, 0.7f, groundMask);
+        return Physics.Raycast(player.position, Vector3.down, 1f, groundMask);
         
     }
 }
