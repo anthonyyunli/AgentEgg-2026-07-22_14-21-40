@@ -12,15 +12,18 @@ public class EggHealth : MonoBehaviour
     public Gradient healthgradient;
 
     //public double playerVelocity;
-    private Rigidbody player;
+    public Rigidbody player;
     public float health = 100;
     private float softness = 1;
 
     private bool isGrounded1 = true;
 
-    [SerializeField] private GroundSensor groundSensor;
+    [SerializeField] private float checkOffset = 0.5f;
+    [SerializeField] private float checkRadius = 0.4f;
 
-    //  public LayerMask groundlayer;
+    //    [SerializeField] private GroundSensor groundSensor;
+
+      public LayerMask groundMask;
 
     void Awake()
     {
@@ -42,7 +45,8 @@ public class EggHealth : MonoBehaviour
     {
         
 
-        bool groundedNow = groundSensor.IsGrounded();
+       // bool groundedNow = groundSensor.IsGrounded();
+        bool groundedNow = isGrounded();
 
         //if (player.linearVelocity.y * -1*Time.deltaTime*60 >= 1 && isGrounded())
         if (groundedNow && !isGrounded1)
@@ -76,6 +80,11 @@ public class EggHealth : MonoBehaviour
         healthslider.value = health;
         healthfill.color = healthgradient.Evaluate(health/100);
     }
+    public bool isGrounded()
+    {
+        Vector3 checkPosition = transform.position + Vector3.down * checkOffset;
 
+        return Physics.CheckSphere(checkPosition, checkRadius, groundMask, QueryTriggerInteraction.Ignore);
+    }
 
 }
