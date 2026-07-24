@@ -19,13 +19,14 @@ public class EggRolling : MonoBehaviour
     private Vector2 moveInput;
     private bool jumpRequested;
     private bool isGrounded;
+    private Vector3 groundNormal;
 
     private void Awake()
     {
-        jumpImpulse = 6f;
-
         body = GetComponent<Rigidbody>();
         body.maxAngularVelocity = maxAngularSpeed;
+
+         if (groundSensor == null) groundSensor = GetComponent<GroundSensor>();
     }
 
     public void OnMove(InputValue value)
@@ -42,28 +43,32 @@ public class EggRolling : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = groundSensor.IsGrounded();
+        isGrounded = groundSensor.IsGrounded(out RaycastHit groundHit);
+
+        groundNormal = isGrounded ? groundHit.normal : Vector3.up;
 
         // Rolling
         if (cameraTransform && moveInput.sqrMagnitude > 0.01f)
         {
-            Vector3 cameraForward = cameraTransform.forward;
-            Vector3 cameraRight = cameraTransform.right;
+            Vector3 cameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up).normalized;
+            Vector3 cameraRight = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up).normalized;
 
             Vector3 moveDir = cameraForward * moveInput.y + cameraRight * moveInput.x;
+            if (isGrounded) moveDir = Vector3.ProjectOnPlane(moveDir, groundNormal);
+
             moveDir.Normalize();
 
             Vector3 torqueAxis = Vector3.Cross(Vector3.up, moveDir); // roll on axis perpendicular to movement
             body.AddTorque(torqueAxis * torqueStrength, ForceMode.Acceleration);
         }
 
+        // Jump
         if (jumpRequested && isGrounded)
         {
-            body.AddForce(Vector3.up * jumpImpulse, ForceMode.Impulse);
+            body.AddForce(groundNormal * jumpImpulse, ForceMode.Impulse);
         }
 
         jumpRequested = false;
-        isGrounded = false;
     }
 
 }

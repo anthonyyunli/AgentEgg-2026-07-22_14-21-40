@@ -15,8 +15,7 @@ public class EggHealth : MonoBehaviour
     public Rigidbody player;
     public float health = 100;
     private float softness = 1;
-
-    private bool isGrounded1 = true;
+    private bool wasGrounded = true;
 
     [SerializeField] private float checkOffset = 0.5f;
     [SerializeField] private float checkRadius = 0.4f;
@@ -45,11 +44,10 @@ public class EggHealth : MonoBehaviour
     {
         
 
-        bool groundedNow = groundSensor.IsGrounded();
-    //    bool groundedNow = isGrounded();
+        bool groundedNow = groundSensor.IsGrounded(out _);
 
         //if (player.linearVelocity.y * -1*Time.deltaTime*60 >= 1 && isGrounded())
-        if (groundedNow && !isGrounded1)
+        if (groundedNow && !wasGrounded)
         {
             if (Mathf.Abs(player.linearVelocity.y) * softness > 10)
             {
@@ -63,7 +61,7 @@ public class EggHealth : MonoBehaviour
 
 
         // Debug.Log("velocity:" + player.linearVelocity.y + ", health:" + health);
-        isGrounded1 = groundedNow;//only for testing pourposes. delte afterwards
+        wasGrounded = groundedNow;//only for testing pourposes. delte afterwards
 
         setHealth(health);
     }

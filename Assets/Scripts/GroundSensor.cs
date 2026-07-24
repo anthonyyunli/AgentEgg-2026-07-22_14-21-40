@@ -3,21 +3,23 @@ using UnityEngine;
 public class GroundSensor : MonoBehaviour
 {
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private float checkOffset = 0.5f;
-    [SerializeField] private float checkRadius = 0.2f;
+    [SerializeField] private float castRadius = 0.45f;
+    [SerializeField] private float castDistance = 0.25f;
+    [SerializeField] private float startOffset = 0.1f;
 
-    public bool IsGrounded()
+    public bool IsGrounded(out RaycastHit hit)
     {
-        Vector3 checkPosition = transform.position + Vector3.down * checkOffset;
+        Vector3 origin = transform.position + Vector3.up * startOffset;
 
-        return Physics.CheckSphere(checkPosition, checkRadius, groundMask, QueryTriggerInteraction.Ignore);
+        return Physics.SphereCast(origin, castRadius, Vector3.down, out hit, castDistance, groundMask, QueryTriggerInteraction.Ignore);
     }
 
     private void OnDrawGizmosSelected()
     {
-        Vector3 checkPosition = transform.position + Vector3.up * checkOffset;
+        Vector3 origin = transform.position + Vector3.up * startOffset;
+        Vector3 end = origin + Vector3.down * castDistance;
 
-        Gizmos.color = IsGrounded() ? Color.green : Color.red;
-        Gizmos.DrawWireSphere(checkPosition, checkRadius);
+        Gizmos.DrawLine(origin, end);
+        Gizmos.DrawWireSphere(end, castRadius);
     }
 }
