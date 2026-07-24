@@ -78,11 +78,11 @@ public class EggHealth : MonoBehaviour
         healthslider.value = health;
         healthfill.color = healthgradient.Evaluate(health/100);
     }
-    public bool isGrounded()
-    {
-        Vector3 checkPosition = transform.position + Vector3.down * checkOffset;
+    // public bool isGrounded()
+    // {
+    //     Vector3 checkPosition = transform.position + Vector3.down * checkOffset;
 
-        return Physics.CheckSphere(checkPosition, checkRadius, groundMask, QueryTriggerInteraction.Ignore);
-    }
+    //     return Physics.CheckSphere(checkPosition, checkRadius, groundMask, QueryTriggerInteraction.Ignore);
+    // }
 
 }
