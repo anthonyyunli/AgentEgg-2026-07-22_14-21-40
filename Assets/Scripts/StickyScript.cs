@@ -7,12 +7,16 @@ public class StickyScript : MonoBehaviour
     [SerializeField] private float checkPosition;
     [SerializeField] private float checkRadius;
 
+    public Transform honeyPrefab;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         checkRadius = 1f;
+
+   //     Physics.IgnoreCollision(honeyPrefab.GetComponent().GetChild(0).transform.GetComponent<Collider>(), GetComponent<Collider>()); 
     }
 
     // Update is called once per frame
