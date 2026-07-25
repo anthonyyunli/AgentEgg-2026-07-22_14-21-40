@@ -754,12 +754,8 @@ MonoBehaviour:
   pullStrength: 120
   pullDamping: 18
   maxForce: 600
-  passiveWobbleStrength: 1.5
-  maxPassiveWobble: 4
   grabWobbleStrength: 0.1
   maxGrabWobble: 4.5
-  breakTurnSpeed: 6
-  breakTurnAngle: 95
 --- !u!1001 &222432071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5216,7 +5212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1952631443
 RectTransform:
   m_ObjectHideFlags: 0
