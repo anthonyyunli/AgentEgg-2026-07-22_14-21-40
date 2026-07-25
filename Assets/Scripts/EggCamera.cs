@@ -23,55 +23,30 @@ public class EggCamera : MonoBehaviour
     private void Start()
     {
         if (cameraTransform) yaw = cameraTransform.eulerAngles.y;
-        LockCursor();
     }
 
     public void OnLook(InputValue value)
     {
-      //  Debug.Log(value.Get<Vector2>());//so I can see my debug.log
         lookInput = value.Get<Vector2>();
-    }
-
-    private void Update()
-    {
-        if (Keyboard.current!=null && Keyboard.current.escapeKey.wasPressedThisFrame) UnlockCursor();
-        if (Mouse.current!=null && Mouse.current.leftButton.wasPressedThisFrame) LockCursor();
-
     }
 
     private void LateUpdate()
     {
         if (cameraTransform==null) return;
 
-        if (Cursor.lockState == CursorLockMode.Locked)
+        if (Mouse.current != null && Mouse.current.rightButton.isPressed)
         {
             yaw += lookInput.x * mouseSensitivity;
             pitch -= lookInput.y * mouseSensitivity;
-
             pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
         }
         lookInput = Vector2.zero;
 
-        // camera slightly above egg
-        Vector3 focusPoint = transform.position + Vector3.up * targetHeight;
-
-        Quaternion cameraRotation = Quaternion.Euler(pitch, yaw, 0f);
         
-        // camera slightly behind where its looking at
-        Vector3 cameraPosition = focusPoint - cameraRotation * Vector3.forward * distance;
+        Vector3 focusPoint = transform.position + Vector3.up * targetHeight; // camera slightly above egg
+        Quaternion cameraRotation = Quaternion.Euler(pitch, yaw, 0f);
+        Vector3 cameraPosition = focusPoint - cameraRotation * Vector3.forward * distance; // camera slightly behind where its looking at
 
         cameraTransform.SetPositionAndRotation(cameraPosition, cameraRotation);
-    }
-
-    private void LockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
-    private void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 }

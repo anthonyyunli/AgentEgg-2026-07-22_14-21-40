@@ -1,9 +1,5 @@
 using UnityEngine;
-using JetBrains.Annotations;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;//most of these are probably not needed
+using UnityEngine.InputSystem;
 
 public class StickyScript : MonoBehaviour
 {
@@ -28,11 +24,11 @@ public class StickyScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        Debug.Log("is sticky?: "+isSticky()+ "Is In Range?"+ isInRange());
+        // Debug.Log("is sticky?: "+isSticky()+ "Is In Range?"+ isInRange());
         
-        if (Input.GetKeyDown(KeyCode.Q) && isSticky() && isInRange())
+        if (Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame && IsSticky() && IsInRange())
         {
         //connect spring between player and said object
         Debug.Log("Initiate spring");
@@ -41,39 +37,29 @@ public class StickyScript : MonoBehaviour
         }
 
     }
-
-    public bool isSticky()
+    public bool IsSticky()
     {
-        if (sticky) return true;
-        else
-            {
+        Vector3 position = player.position;
 
+        sticky = Physics.CheckSphere(
+            position,
+            1f,
+            stickyMask,
+            QueryTriggerInteraction.Ignore
+        );
 
-        Vector3 checkPosition = player.position;
-
-        checkRadius = 1f;
-
-        sticky = Physics.CheckSphere(checkPosition, checkRadius, stickyMask, QueryTriggerInteraction.Ignore);
-
-        return Physics.CheckSphere(checkPosition, checkRadius, stickyMask, QueryTriggerInteraction.Ignore);
-
-
-
-        }
+        return sticky;
     }
 
-    public bool isInRange()
+    public bool IsInRange()
     {
+        Vector3 position = player.position;
 
-
-        Vector3 checkPosition = player.position;
-
-        checkRadius = 2f;
-
-
-
-        return Physics.CheckSphere(checkPosition, checkRadius, moveableMask, QueryTriggerInteraction.Ignore);
-
-
+        return Physics.CheckSphere(
+            position,
+            2f,
+            moveableMask,
+            QueryTriggerInteraction.Ignore
+        );
     }
 }
