@@ -23,7 +23,7 @@ public class StickyScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-    public bool sticky = false;
+        sticky = false;
    //     Physics.IgnoreCollision(honeyPrefab.GetComponent().GetChild(0).transform.GetComponent<Collider>(), GetComponent<Collider>()); 
     }
 
@@ -44,10 +44,7 @@ public class StickyScript : MonoBehaviour
 
     public bool isSticky()
     {
-        if (StickyScript == true)
-            { 
-                return true;
-            }
+        if (sticky) return true;
         else
             {
 

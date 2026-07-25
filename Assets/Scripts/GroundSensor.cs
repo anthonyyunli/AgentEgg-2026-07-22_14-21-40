@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GroundSensor : MonoBehaviour
 {
-    [SerializeField] private LayerMask groundMask;
     [SerializeField] private float castRadius = 0.45f;
     [SerializeField] private float castDistance = 0.25f;
     [SerializeField] private float startOffset = 0.1f;
@@ -11,7 +10,7 @@ public class GroundSensor : MonoBehaviour
     {
         Vector3 origin = transform.position + Vector3.up * startOffset;
 
-        return Physics.SphereCast(origin, castRadius, Vector3.down, out hit, castDistance, groundMask, QueryTriggerInteraction.Ignore);
+        return Physics.SphereCast( origin, castRadius, Vector3.down, out hit, castDistance );
     }
 
     private void OnDrawGizmosSelected()
