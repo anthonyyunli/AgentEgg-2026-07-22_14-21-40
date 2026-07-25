@@ -840,9 +840,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: -2607103071428200337, guid: d74c8150065faa12fbcd0d61ba1012e8, type: 3}
+      propertyPath: m_TagString
+      value: Moveable
+      objectReference: {fileID: 0}
     - target: {fileID: -293203802875518696, guid: d74c8150065faa12fbcd0d61ba1012e8, type: 3}
       propertyPath: m_Name
       value: Pan
+      objectReference: {fileID: 0}
+    - target: {fileID: -293203802875518696, guid: d74c8150065faa12fbcd0d61ba1012e8, type: 3}
+      propertyPath: m_TagString
+      value: Moveable
       objectReference: {fileID: 0}
     - target: {fileID: 7881466077556996133, guid: d74c8150065faa12fbcd0d61ba1012e8, type: 3}
       propertyPath: m_LocalScale.x
@@ -1043,6 +1051,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EggSplat
       objectReference: {fileID: 0}
+    - target: {fileID: 5861069733216532766, guid: c27dc8341ed9952858744734e0e72c57, type: 3}
+      propertyPath: m_TagString
+      value: Moveable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1050,6 +1062,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5861069733216532766, guid: c27dc8341ed9952858744734e0e72c57, type: 3}
       insertIndex: -1
       addedObject: {fileID: 799350633}
+    - targetCorrespondingSourceObject: {fileID: 5861069733216532766, guid: c27dc8341ed9952858744734e0e72c57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 799350634}
   m_SourcePrefab: {fileID: 3150474306388093854, guid: c27dc8341ed9952858744734e0e72c57, type: 3}
 --- !u!1 &603710818
 GameObject:
@@ -1467,6 +1482,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3768719051437600471, guid: c27dc8341ed9952858744734e0e72c57, type: 3}
+--- !u!54 &799350634
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799350629}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4529,7 +4571,7 @@ GameObject:
   - component: {fileID: 9011753704360884196}
   m_Layer: 0
   m_Name: Flour
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4606,7 +4648,7 @@ GameObject:
   - component: {fileID: 8101579662387035678}
   m_Layer: 0
   m_Name: Roller
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5345,7 +5387,7 @@ GameObject:
   - component: {fileID: 8691778252887743759}
   m_Layer: 0
   m_Name: Wire
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5576,7 +5618,7 @@ GameObject:
   - component: {fileID: 8699301440275980646}
   m_Layer: 0
   m_Name: Knife Holder
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6086,7 +6128,7 @@ GameObject:
   - component: {fileID: 6678305545934058169}
   m_Layer: 0
   m_Name: Bottle
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6331,7 +6373,7 @@ GameObject:
   - component: {fileID: 6511758639725427504}
   m_Layer: 0
   m_Name: Salt
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6553,7 +6595,7 @@ GameObject:
   - component: {fileID: 7933335044779216675}
   m_Layer: 0
   m_Name: Knife
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6572,7 +6614,7 @@ GameObject:
   - component: {fileID: 8920410655480104938}
   m_Layer: 0
   m_Name: Knife (1)
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6832,7 +6874,7 @@ GameObject:
   - component: {fileID: 5655079576035339252}
   m_Layer: 0
   m_Name: Pepper
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7880,7 +7922,7 @@ GameObject:
   - component: {fileID: 8854232552268534011}
   m_Layer: 0
   m_Name: Sugar
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8082,7 +8124,7 @@ GameObject:
   - component: {fileID: 7049715381329105914}
   m_Layer: 0
   m_Name: Pot
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8288,7 +8330,7 @@ GameObject:
   - component: {fileID: 7245704736839442385}
   m_Layer: 0
   m_Name: Knife
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8560,7 +8602,7 @@ GameObject:
   - component: {fileID: 8670510170581620541}
   m_Layer: 0
   m_Name: Pan
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8579,7 +8621,7 @@ GameObject:
   - component: {fileID: 7452794266299741536}
   m_Layer: 0
   m_Name: Cutting Board
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9589,7 +9631,7 @@ GameObject:
   - component: {fileID: 8541998455890424200}
   m_Layer: 0
   m_Name: Plug
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9645,7 +9687,7 @@ GameObject:
   - component: {fileID: 8973304327554406121}
   m_Layer: 0
   m_Name: Knife (2)
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9664,7 +9706,7 @@ GameObject:
   - component: {fileID: 8473405645078521636}
   m_Layer: 0
   m_Name: Shelf
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9813,7 +9855,7 @@ GameObject:
   - component: {fileID: 8636929382523838343}
   m_Layer: 0
   m_Name: Toaster
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10081,7 +10123,7 @@ GameObject:
   - component: {fileID: 8826891518053084293}
   m_Layer: 0
   m_Name: Pan (1)
-  m_TagString: Untagged
+  m_TagString: Moveable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
