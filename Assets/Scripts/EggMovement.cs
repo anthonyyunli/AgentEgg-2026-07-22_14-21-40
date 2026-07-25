@@ -7,10 +7,13 @@ public class EggRolling : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private GroundSensor groundSensor;
+    [SerializeField] private MouseGrabber mouseGrabber;
 
     [Header("Rolling")]
     [SerializeField] private float torqueStrength = 20f;
-    [SerializeField] private float maxAngularSpeed = 25f;
+    [SerializeField] private float maxAngularSpeed = 80f;
+    [SerializeField] private float carryTorqueMultiplier = 0.55f;
+    [SerializeField] private float carryAngularMultiplier = 0.65f;
 
     [Header("Jump")]
     [SerializeField] private float jumpImpulse = 6f;
@@ -26,7 +29,8 @@ public class EggRolling : MonoBehaviour
         body = GetComponent<Rigidbody>();
         body.maxAngularVelocity = maxAngularSpeed;
 
-         if (groundSensor == null) groundSensor = GetComponent<GroundSensor>();
+        if (groundSensor == null) groundSensor = GetComponent<GroundSensor>();
+        if (mouseGrabber == null) mouseGrabber = GetComponent<MouseGrabber>();
     }
 
     public void OnMove(InputValue value)
@@ -46,6 +50,8 @@ public class EggRolling : MonoBehaviour
         isGrounded = groundSensor.IsGrounded(out RaycastHit groundHit);
 
         groundNormal = isGrounded ? groundHit.normal : Vector3.up;
+        bool carrying = mouseGrabber != null && mouseGrabber.IsHolding;
+        body.maxAngularVelocity = maxAngularSpeed * (carrying ? carryAngularMultiplier : 1f);
 
         // Rolling
         if (cameraTransform && moveInput.sqrMagnitude > 0.01f)
@@ -58,8 +64,8 @@ public class EggRolling : MonoBehaviour
 
             moveDir.Normalize();
 
-            Vector3 torqueAxis = Vector3.Cross(Vector3.up, moveDir); // roll on axis perpendicular to movement
-            body.AddTorque(torqueAxis * torqueStrength, ForceMode.Acceleration);
+            Vector3 torqueAxis = Vector3.Cross(groundNormal, moveDir); // roll on axis perpendicular to movement
+            body.AddTorque(torqueAxis * torqueStrength * (carrying ? carryTorqueMultiplier : 1f), ForceMode.Acceleration);
         }
 
         // Jump
