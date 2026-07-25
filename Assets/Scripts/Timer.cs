@@ -1,51 +1,45 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Timer : MonoBehaviour
 {
-
     public Slider timerslider;
     public Image timerfill;
-    //   public Gradient healthgradient;
-
-    public float time;
-    public float maxTime;
-
+    public float time = 180f;
+    public float maxTime = 180f;
     public TextMeshProUGUI timetext;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        maxTime = 180;
+        if (maxTime <= 0f) maxTime = 180f;
         time = maxTime;
-        setMaxTime(time);
-        
+        SetMaxTime(maxTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        time -= Time.deltaTime;
-        setTime(time);
-        timetext.text = ("Time: " + (int)time + "s");
-       
+        time = Mathf.Max(0f, time - Time.deltaTime);
+        SetTime(time);
+        if (timetext) timetext.text = FormatTime(time);
     }
 
-    public void setMaxTime(float time)
+    public void SetMaxTime(float value)
     {
-        timerslider.maxValue = 180;//update 180 to maxtime manually
-        timerslider.value = time;
-        //healthfill.color = healthgradient.Evaluate(1f);
+        if (timerslider == null) return;
+
+        timerslider.maxValue = value;
+        timerslider.value = value;
     }
 
-    public void setTime(float time)
+    public void SetTime(float value)
     {
-        timerslider.value = time;
-      //  healthfill.color = healthgradient.Evaluate(time / maxTime);
+        if (timerslider) timerslider.value = value;
     }
 
-
-
-
+    private string FormatTime(float secondsLeft)
+    {
+        int seconds = Mathf.CeilToInt(secondsLeft);
+        return $"{seconds / 60:00}:{seconds % 60:00}";
+    }
 }

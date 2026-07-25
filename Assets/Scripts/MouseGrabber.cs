@@ -86,8 +86,7 @@ public class MouseGrabber : MonoBehaviour
 
     private void AddGrabWobble(Vector3 itemVelocity)
     {
-        // This is literally the sisyphus meme.
-        Vector3 wobble = Vector3.Cross(Vector3.up, itemVelocity-eggBody.linearVelocity) * HeldMass * grabWobbleStrength;
+        Vector3 wobble = Vector3.Cross(Vector3.up, itemVelocity - eggBody.linearVelocity) * HeldMass * grabWobbleStrength;
         wobble = Vector3.ProjectOnPlane(wobble, Vector3.up);
         if (wobble.sqrMagnitude < 0.001f) return;
 
