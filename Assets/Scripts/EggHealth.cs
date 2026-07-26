@@ -27,6 +27,8 @@ public class EggHealth : MonoBehaviour
     private bool dead;
     private bool paused;
     private float maxHealth;
+    public Image healthfill;
+    public Slider healthslider;
 
     private void Awake()
     {
@@ -101,6 +103,7 @@ public class EggHealth : MonoBehaviour
 
     public void SetHealth(float value)
     {
+        healthslider.value = value / 100;
         health = Mathf.Clamp(value, 0f, maxHealth);
         SetEggState(health);
     }
