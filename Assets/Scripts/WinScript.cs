@@ -8,6 +8,10 @@ public class WinScript : MonoBehaviour
     [SerializeField] private LayerMask PlayerMask;
     [SerializeField] private LayerMask BoilEggMask;
 
+    public GameObject winscreen;
+
+    public EggHealth egghealth;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,10 +34,12 @@ public class WinScript : MonoBehaviour
     {
         Vector3 position = gate.position;
 
-         if (Physics.CheckSphere(position,10f,PlayerMask,QueryTriggerInteraction.Ignore) == true && Physics.CheckSphere(position, 10f, BoilEggMask, QueryTriggerInteraction.Ignore) == true)
+         if (Physics.CheckSphere(position,5f,PlayerMask,QueryTriggerInteraction.Ignore) == true && Physics.CheckSphere(position, 5f, BoilEggMask, QueryTriggerInteraction.Ignore) == true)
         {
 
             Debug.Log("Game won");
+            winscreen.SetActive(true);
+            egghealth.Pause();
 
         }
 

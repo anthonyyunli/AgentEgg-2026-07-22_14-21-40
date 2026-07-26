@@ -115,13 +115,14 @@ public class EggHealth : MonoBehaviour
 
     public void Resume()
     {
-        SetPaused(false);
+        SetPaused(false);//I thinbk Ive messed up your whole loop but it works
     }
 
     public void Respawn()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Title Screen");
     }
 
     private void ApplyFallDamage(RaycastHit hit)
@@ -148,7 +149,7 @@ public class EggHealth : MonoBehaviour
     {
         paused = value;
         Time.timeScale = paused ? 0f : 1f;
-        if (pausePanel) pausePanel.SetActive(paused);
+     //   if (pausePanel) pausePanel.SetActive(paused); Added this intmanually int he button functions to make it compatible when you win
         if (pauseButton) pauseButton.SetActive(!paused && !dead);
     }
 
