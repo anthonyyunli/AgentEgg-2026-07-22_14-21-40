@@ -9,6 +9,15 @@ public class Timer : MonoBehaviour
     public float time = 180f;
     public float maxTime = 180f;
     public TextMeshProUGUI timetext;
+    public GameObject BoilEgg;
+    public GameObject SplatBoilEgg;
+  //  public GameObject player;
+  //  public Camera MainCamera;
+
+    public GameObject LoseScreen;
+
+    public EggHealth egghealth;
+
 
     private void Start()
     {
@@ -20,8 +29,57 @@ public class Timer : MonoBehaviour
     private void Update()
     {
         time = Mathf.Max(0f, time - Time.deltaTime);
-        SetTime(time);
-        if (timetext) timetext.text = FormatTime(time);
+        if (time > 0)
+        {
+            SetTime(time);
+            if (timetext) timetext.text = FormatTime(time-1);
+        }
+        else if (time <= 0)
+        {
+            Debug.Log("Tiem out");
+
+            LoseScreen.SetActive(true);
+            /*
+            foreach (Renderer renderer in player.GetComponentsInChildren<Renderer>()) renderer.enabled = false;
+
+            if (player.transform.TryGetComponent(out EggRolling movement)) movement.enabled = false;
+            if (player.transform.TryGetComponent(out MouseGrabber grabber)) grabber.enabled = false;
+            if (player.transform.TryGetComponent(out EggCamera eggCamera)) eggCamera.enabled = false;
+            if (player.transform.TryGetComponent(out Collider collider)) collider.enabled = false;
+            if (player)
+            {
+                player.linearVelocity = Vector3.zero;
+                player.angularVelocity = Vector3.zero;
+                player.isKinematic = true;
+            }
+
+
+            Vector3 position = BoilEgg.transform.position;
+            Quaternion rotation = Quaternion.identity;
+            if (Physics.Raycast(position + Vector3.up, Vector3.down, out RaycastHit hit, 5f))
+            {
+                position = hit.point + Vector3.up * 0.02f;
+                rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            }
+            */
+
+          //  BoilEgg.SetActive(false);
+
+           // SplatBoilEgg.transform.position = BoilEgg.transform.position;
+
+
+            // EggCamera =  new Vector3[Mathf.RoundToInt(BoilEgg.transform.position.x), Mathf.RoundToInt(BoilEgg.transform.position.y+5), Mathf.RoundToInt(BoilEgg.transform.position.z)];
+
+            //  MainCamera.transform.position = EggCamera;
+
+           // MainCamera.transform.position = SplatBoilEgg.transform.position;
+
+            //  MainCamera.transform.position.y += 5;
+         //   MainCamera.transform.Translate(Vector3[0, 5, 0]);
+
+
+            egghealth.Pause();
+        }
     }
 
     public void SetMaxTime(float value)

@@ -205,5 +205,8 @@ public class EggHealth : MonoBehaviour
 
         splatObject.transform.SetPositionAndRotation(position, rotation);
         splatObject.SetActive(true);
+        Time.timeScale = true ? 0f : 1f;
+        //   if (pausePanel) pausePanel.SetActive(paused); Added this intmanually int he button functions to make it compatible when you win
+      //  if (pauseButton) pauseButton.SetActive(!paused && !dead);
     }
 }
