@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class MouseGrabber : MonoBehaviour
 {
-    [SerializeField] private float range = 8f;
+    [SerializeField] private float range = 20f;
     [SerializeField] private float breakRange = 10f;
     [SerializeField] private float pullStrength = 120f;
     [SerializeField] private float pullDamping = 18f;
