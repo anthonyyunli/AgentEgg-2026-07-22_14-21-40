@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        if (maxTime <= 0f) maxTime = 180f;
+        if (maxTime <= 0f) maxTime = 600f;
         time = maxTime;
         SetMaxTime(maxTime);
     }

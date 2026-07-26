@@ -17,8 +17,17 @@ public class StartCutscene : MonoBehaviour
     [SerializeField] private float panHoldTime = 1f;
     [SerializeField] private float moveBackTime = 1.4f;
 
+    public GameObject story;
+    public GameObject storyimage;
+
     private IEnumerator Start()
     {
+
+        yield return new WaitForSeconds(5);
+
+        story.SetActive(false);
+        storyimage.SetActive(false);
+
         if (cameraTransform == null && Camera.main) cameraTransform = Camera.main.transform;
         if (eggCamera == null) eggCamera = GetComponent<EggCamera>();
         if (eggRolling == null) eggRolling = GetComponent<EggRolling>();
@@ -35,6 +44,8 @@ public class StartCutscene : MonoBehaviour
         yield return MoveCamera(eggView, panView, moveToPanTime);
         yield return new WaitForSeconds(panHoldTime);
         yield return MoveCamera(panView, GetEggView(), moveBackTime);
+
+       
 
         SetControl(true);
     }
