@@ -755,38 +755,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5126a7a48afbc4db11b7cc26cecba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggHealth
-  healthslider: {fileID: 736613527}
-  healthfill: {fileID: 1530018302}
-  healthgradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 0.99178314, g: 1, b: 0, a: 1}
-    key2: {r: 0, g: 1, b: 0.17926908, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 32768
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
+  eggStateImage: {fileID: 920000003}
+  eggStates:
+  - {fileID: 21300000, guid: c78bfff8e17b5cd0b9a761feb04c9ab8, type: 3}
+  - {fileID: 21300000, guid: a51b7e9ff349ab9d1bfe425820ae8604, type: 3}
+  - {fileID: 21300000, guid: 43ee1c48ff987d98392a82b2e05671c2, type: 3}
+  - {fileID: 21300000, guid: 6fe9c27ad93618294a773dcf5e24b7b6, type: 3}
+  - {fileID: 21300000, guid: 25ab368a849b76137908866551c85b7e, type: 3}
+  - {fileID: 21300000, guid: b9b01b25c75501e519c086c4d64f6f70, type: 3}
+  - {fileID: 21300000, guid: bdac1cddaafd6a10b8554ad0e8d914db, type: 3}
   player: {fileID: 192325820}
   health: 100
   groundSensor: {fileID: 192325825}
@@ -887,7 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartCutscene
   cameraTransform: {fileID: 330585546}
-  panTarget: {fileID: 7380592386745790203}
+  panTarget: {fileID: 580163364}
   eggCamera: {fileID: 192325824}
   eggRolling: {fileID: 192325822}
   mouseGrabber: {fileID: 192325827}
@@ -2012,6 +1989,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548551560}
   m_CullTransparentMesh: 1
+--- !u!4 &580163364 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7881466077556996133, guid: d74c8150065faa12fbcd0d61ba1012e8, type: 3}
+  m_PrefabInstance: {fileID: 520870927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &596369691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2483,7 +2465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &736613526
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2557,6 +2539,81 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &920000001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 920000002}
+  - component: {fileID: 920000004}
+  - component: {fileID: 920000003}
+  m_Layer: 5
+  m_Name: EggStateImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &920000002
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920000001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1475648185}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -30, y: 30}
+  m_SizeDelta: {x: 170, y: 200}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &920000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c78bfff8e17b5cd0b9a761feb04c9ab8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &920000004
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920000001}
+  m_CullTransparentMesh: 1
 --- !u!1 &745399838
 GameObject:
   m_ObjectHideFlags: 0
@@ -4161,7 +4218,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1576595854}
-  - {fileID: 736613526}
+  - {fileID: 920000002}
   - {fileID: 910000002}
   - {fileID: 1952631443}
   - {fileID: 1149213890}

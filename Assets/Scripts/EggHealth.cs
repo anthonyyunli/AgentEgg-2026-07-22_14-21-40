@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class EggHealth : MonoBehaviour
 {
-    public Slider healthslider;
-    public Image healthfill;
-    public Gradient healthgradient;
+    public Image eggStateImage;
+    public Sprite[] eggStates;
     public Rigidbody player;
     public float health = 100f;
     public GroundSensor groundSensor;
@@ -27,6 +26,7 @@ public class EggHealth : MonoBehaviour
     private bool wasGrounded = true;
     private bool dead;
     private bool paused;
+    private float maxHealth;
 
     private void Awake()
     {
@@ -95,19 +95,14 @@ public class EggHealth : MonoBehaviour
 
     public void SetMaxHealth(float value)
     {
-        if (healthslider == null) return;
-
-        healthslider.maxValue = value;
-        healthslider.value = health;
-        if (healthfill) healthfill.color = healthgradient.Evaluate(1f);
+        maxHealth = Mathf.Max(1f, value);
+        SetEggState(health);
     }
 
     public void SetHealth(float value)
     {
-        if (healthslider == null) return;
-
-        healthslider.value = value;
-        if (healthfill) healthfill.color = healthgradient.Evaluate(value / healthslider.maxValue);
+        health = Mathf.Clamp(value, 0f, maxHealth);
+        SetEggState(health);
     }
 
     public void Pause()
@@ -152,6 +147,23 @@ public class EggHealth : MonoBehaviour
         Time.timeScale = paused ? 0f : 1f;
         if (pausePanel) pausePanel.SetActive(paused);
         if (pauseButton) pauseButton.SetActive(!paused && !dead);
+    }
+
+    private void SetEggState(float value)
+    {
+        if (eggStateImage == null || eggStates == null || eggStates.Length == 0) return;
+
+        float health01 = Mathf.Clamp01(value / maxHealth);
+        int state = health01 <= 0f ? eggStates.Length - 1 : 0;
+
+        if (state == 0 && health01 < 1f)
+        {
+            state = 1 + Mathf.FloorToInt((1f - health01) * (eggStates.Length - 2));
+        }
+
+        state = Mathf.Clamp(state, 0, eggStates.Length - 1);
+        eggStateImage.sprite = eggStates[state];
+        eggStateImage.enabled = eggStateImage.sprite != null;
     }
 
     private void CrackEgg()
