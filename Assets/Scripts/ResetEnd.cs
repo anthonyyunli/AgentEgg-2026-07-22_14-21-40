@@ -27,9 +27,9 @@ public class ResetEnd : MonoBehaviour
 
         Debug.Log("Reset Called");
 
-        egghealth.setMaxHealth(180);
+        // egghealth.setMaxHealth(180);
 
-        timer.setMaxTime(180);
+        // timer.setMaxTime(180);
 
         player.position = startPosition.position;
 

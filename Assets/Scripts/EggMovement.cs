@@ -41,8 +41,7 @@ public class EggRolling : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        Debug.Log("JUMP");
-        if (value.isPressed) jumpRequested = true;
+        if (value.isPressed && !IsCarrying) jumpRequested = true;
     }
 
     private void FixedUpdate()
@@ -50,7 +49,7 @@ public class EggRolling : MonoBehaviour
         isGrounded = groundSensor.IsGrounded(out RaycastHit groundHit);
 
         groundNormal = isGrounded ? groundHit.normal : Vector3.up;
-        bool carrying = mouseGrabber != null && mouseGrabber.IsHolding;
+        bool carrying = IsCarrying;
         body.maxAngularVelocity = maxAngularSpeed * (carrying ? carryAngularMultiplier : 1f);
 
         // Rolling
@@ -69,7 +68,7 @@ public class EggRolling : MonoBehaviour
         }
 
         // Jump
-        if (jumpRequested && isGrounded)
+        if (jumpRequested && isGrounded && !carrying)
         {
             body.AddForce(groundNormal * jumpImpulse, ForceMode.Impulse);
         }
@@ -77,4 +76,5 @@ public class EggRolling : MonoBehaviour
         jumpRequested = false;
     }
 
+    private bool IsCarrying => mouseGrabber != null && mouseGrabber.IsHolding;
 }
