@@ -125,6 +125,14 @@ public class EggHealth : MonoBehaviour
         SceneManager.LoadScene("Title Screen");
     }
 
+    public void OldRespawn()
+    {
+        //I realised it would make more sense that after dying you didnt have to got ot he main menu
+        Time.timeScale = 1f;
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+       // SceneManager.LoadScene("Title Screen");
+    }
+
     private void ApplyFallDamage(RaycastHit hit)
     {
         float fallHeight = Mathf.Max(0f, peakY - transform.position.y - safeFallHeight);
